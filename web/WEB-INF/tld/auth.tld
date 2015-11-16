@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>auth</short-name>
+  <uri>http://matskevich.net/taglib/auth</uri>
+  <function>
+    <name>user</name>
+    <function-class>by.bsuir.group172301.matskevich.tour.logic.authentication.AuthenticationLogic</function-class>
+    <function-signature>by.bsuir.group172301.matskevich.tour.entity.User user(javax.servlet.http.HttpServletRequest)</function-signature>
+  </function>
+</taglib>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>n</short-name>
+  <uri>http://matskevich.net/taglib/notification</uri>
+  <tag>
+    <name>notifications</name>
+    <tag-class>by.bsuir.group172301.matskevich.tour.notification.tag.FlashesTag</tag-class>
+    <body-content>scriptless</body-content>
+  </tag>
+  <function>
+    <name>have_notifications</name>
+    <function-class>by.bsuir.group172301.matskevich.tour.notification.service.NotificationService</function-class>
+    <function-signature>boolean haveNotifications(javax.servlet.http.HttpSession)</function-signature>
+  </function>
+</taglib>
