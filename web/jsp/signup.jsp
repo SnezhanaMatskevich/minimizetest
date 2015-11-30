@@ -20,7 +20,7 @@
         <div class="content">
 
             <h1><fmt:message key="signup.page.title"/> </h1>
-            <p><fmt:message key="auth.page.message"/> </p>
+            <p><fmt:message key="signup.page.message"/> </p>
 
             <form method="post" id="loginForm">
 

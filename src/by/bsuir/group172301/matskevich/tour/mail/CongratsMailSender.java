@@ -27,16 +27,16 @@ public class CongratsMailSender {
 	String url;
 
 	public CongratsMailSender() {
-		senderAddress = "snezhana.matskevich@gmail.com";
-		senderPass = "66717516671751";
-		uName = "snezhana.matskevich";
+		senderAddress = "snezka1@mail.ru";
+		senderPass = "5482831Smsm";
+		uName = "snezka1";
 		url = "";
 	}
 
 	public void sendMail(String way) throws AddressException,
 			MessagingException, UnsupportedEncodingException {
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.host", "smtp.mail.ru");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class",
 				"javax.net.ssl.SSLSocketFactory");
@@ -55,7 +55,7 @@ public class CongratsMailSender {
 		message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(way));
 		message.setSubject("Поздравляем с успешной регистрацией");
-		message.setText("Дорогой пользователь,\" + \"\\n\\n Вы успешно зарегистрировались на Booking.by.");
+		message.setText("Дорогой пользователь,\" + \"\\n\\n Вы успешно зарегистрировались на Testing.by.");
 		Transport.send(message);
 		System.out.println("Done");
 
