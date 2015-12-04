@@ -55,7 +55,7 @@ public class CongratsMailSender {
 		message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(way));
 		message.setSubject("Поздравляем с успешной регистрацией");
-		message.setText("Дорогой пользователь,\" + \"\\n\\n Вы успешно зарегистрировались на Testing.by.");
+		message.setText("Дорогой пользователь, Вы успешно зарегистрировались на Testing.by.");
 		Transport.send(message);
 		System.out.println("Done");
 
