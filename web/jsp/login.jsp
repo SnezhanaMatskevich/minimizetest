@@ -19,18 +19,19 @@
 
 <div class="content">
 
-    <h1><fmt:message key="auth.page.title"/> </h1>
-    <p><fmt:message key="auth.page.message"/> </p>
-    <form method="post" id="loginForm">
-        <input type="hidden" name="command" value="login"/>
+
+    <form  class="sign-up" method="post" id="loginForm">
+         <h3 class="sign-up-title"><fmt:message key="auth.page.title"/> </h3>
+        <input class="sign-up-input" type="hidden" name="command" value="login"/>
         <label for="login"><fmt:message key="auth.page.login_form.login"/> :</label>
-        <input id="login" type="text" name="login"/>
+        <input class="sign-up-input" id="login" type="text" name="login"/>
         <label for="password"><fmt:message key="auth.page.login_form.password"/>:</label>
-        <input id="password" type="password" name="password"/>
-        <input type="submit" value="<fmt:message key="auth.page.login_form.submit"/>"/>
+        <input class="sign-up-input"t id="password" type="password" name="password"/>
+        <input class="sign-up-button" type="submit" value="<fmt:message key="auth.page.login_form.submit"/>"/>
+        <br>
     </form>
 </div>
-        <br>
+     <br><br><br><br><br><br><br><br><br>
 <%@include file="../WEB-INF/jspf/footer.jspf"%>
 </body>
 </html>
