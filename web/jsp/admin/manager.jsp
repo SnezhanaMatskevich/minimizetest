@@ -42,10 +42,10 @@
                 </c:if>
             </h3>
             <div class="inner">
-                <p><b><fmt:message key="tour_table.price"/>:</b> ${tour.price} USD</p>
-                <p><b><fmt:message key="tour_table.type"/>:</b> ${tour.type}</p>
+            
+  
                 <p><b><fmt:message key="tour_table.details"/>:</b> ${tour.details}</p>
-                <p><b><fmt:message key="tour_table.discount"/>:</b> ${tour.regularDiscount}%</p>
+                <p><b><fmt:message key="tour_table.percent"/>:</b> ${tour.regularDiscount}%</p>
             </div>
             <a class="btn btn-blue" href="app?c=update_tour&id=${tour.id}&lang=${locale}"><fmt:message key="tour_table.edit"/></a>
             <a class="btn btn-red" href="app?c=delete_tour&id=${tour.id}&lang=${locale}"><fmt:message key="tour_table.delete"/></a>

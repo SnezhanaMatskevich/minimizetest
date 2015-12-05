@@ -11,7 +11,7 @@ public abstract class ClientCommand extends ActionCommand{
 	public boolean checkAccess(User user) {
 		if (user != null){
 			String rolename = user.getRole().getRolename();
-			return rolename.equals(Role.ROLE_CLIENT);
+			return rolename.equals(Role.ROLE_ADMIN);
 		}
 
 		return false;

@@ -30,7 +30,7 @@ import java.util.Locale;
 /**
  * Login command
  */
-public class LoginCommand extends ActionCommand{
+public class LoginCommand extends ActionCommand {
 
     public static final String LOGIN_PARAMETER = "login";
     public static final String PASSWORD_PARAMETER = "password";
@@ -39,6 +39,7 @@ public class LoginCommand extends ActionCommand{
 
     /**
      * Everyone allowed to login
+     *
      * @param user can be null
      * @return
      */
@@ -47,9 +48,9 @@ public class LoginCommand extends ActionCommand{
         return true;
     }
 
-
     /**
      * Execute login command
+     *
      * @param request request to read the command from
      * @param response
      * @return
@@ -64,27 +65,26 @@ public class LoginCommand extends ActionCommand{
         final String login = request.getParameter(LOGIN_PARAMETER);
         final String password = request.getParameter(PASSWORD_PARAMETER);
 
-        if (login != null && password != null){
+        if (login != null && password != null) {
 
             try {
-				User user = AuthenticationLogic.authenticate(login, password);
+                User user = AuthenticationLogic.authenticate(login, password);
 
-					HttpSession session = request.getSession();
-					session.setAttribute(AuthenticationLogic.SESSION_VAR, user);
+                HttpSession session = request.getSession();
+                session.setAttribute(AuthenticationLogic.SESSION_VAR, user);
 
-                    logger.info("Successful authentication by login: " + login);
-                    notification = NotificationCreator.createFromProperty("info.auth.success", locale);
+                logger.info("Successful authentication by login: " + login);
+                notification = NotificationCreator.createFromProperty("info.auth.success", locale);
 
-                    if (user.getRole().getRolename().equals(Role.ROLE_ADMIN)){
-						List<Tour> tours = TourDAO.getInstance().findAll();
-						request.setAttribute("tours", tours);
-						return pathManager.getString("path.page.admin.manager");
-					} else if (user.getRole().getRolename().equals(Role.ROLE_CLIENT)){
-                        List<Order> orders = OrderDAO.getInstance().findOrdersForUser(user);
-                        request.setAttribute("orders", orders);
-						return pathManager.getString("path.page.client.account");
-					}
-
+                if (user.getRole().getRolename().equals(Role.ROLE_ADMIN)) {
+                    List<Tour> tours = TourDAO.getInstance().findAll();
+                    request.setAttribute("tours", tours);
+                    return pathManager.getString("path.page.admin.manager");
+                } else if (user.getRole().getRolename().equals(Role.ROLE_CLIENT)) {
+                    List<Order> orders = OrderDAO.getInstance().findOrdersForUser(user);
+                    request.setAttribute("orders", orders);
+                    return pathManager.getString("path.page.client.account");
+                }
 
             } catch (AuthenticationTechnicalException e) {
                 throw new CommandException(e);
@@ -97,7 +97,7 @@ public class LoginCommand extends ActionCommand{
             } catch (DAOLogicalException e) {
                 throw new CommandException(e);
             } finally {
-                if (notification != null){
+                if (notification != null) {
                     NotificationService.push(request.getSession(), notification);
                 }
             }

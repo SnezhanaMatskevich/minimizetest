@@ -17,18 +17,8 @@
 <%@include file="../../WEB-INF/jspf/header.jspf"%>
 
 <div class="content">
-    <h1><fmt:message key="order.prepare.hint"/>:</h1>
-    <div class="tour-order">
-        <h3>${tour.tourname}</h3>
-        <p>${tour.details}</p>
-        
-        <p class="total"><fmt:message key="order.prepare.total"/>: ${amount} USD</p>
-    </div>
+    <h1>Результаты</h1>
 
-    <div class="actions">
-        <a class="btn" href="app?c=order&id=${tour.id}&confirm=1&lang=${locale}"><fmt:message key="order.prepare.purchase"/></a>
-        <a href="app?c=tours&lang=${locale}"><fmt:message key="order.prepare.cancel"/></a>
-    </div>
 
 </div>
 

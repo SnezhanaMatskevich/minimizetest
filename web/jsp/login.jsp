@@ -26,7 +26,7 @@
         <label for="login"><fmt:message key="auth.page.login_form.login"/> :</label>
         <input class="sign-up-input" id="login" type="text" name="login"/>
         <label for="password"><fmt:message key="auth.page.login_form.password"/>:</label>
-        <input class="sign-up-input"t id="password" type="password" name="password"/>
+        <input class="sign-up-input" id="password" type="password" name="password"/>
         <input class="sign-up-button" type="submit" value="<fmt:message key="auth.page.login_form.submit"/>"/>
         <br>
     </form>

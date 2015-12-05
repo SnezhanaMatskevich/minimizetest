@@ -16,31 +16,32 @@ import java.util.List;
 /**
  * order dao
  */
-public class OrderDAO extends AbstractDAO<Integer, Order>{
+public class OrderDAO extends AbstractDAO<Integer, Order> {
 
-    private static final String SELECT_USER_ORDERS = "SELECT order.id, order.paid, user.username, tour.tourname, order.amount, order.purchase_date FROM `tour_purchase` `order` JOIN `tour` ON order.tour_id = tour.id JOIN user ON user.id = order.client_id WHERE order.client_id = ?";
+    private static final String SELECT_USER_ORDERS = "SELECT order.id, user.username, tour.tourname, order.amount, order.purchase_date FROM `tour_purchase` `order` JOIN `tour` ON order.tour_id = tour.id JOIN user ON user.id = order.client_id WHERE order.client_id = ?";
     private static final String EMPTY_USER = "EMPTY USER";
     private static final String UPDATE_ORDER = "UPDATE tour_purchase SET paid=? WHERE id =?";
 
     private final String CREATE_ORDER = "INSERT INTO tour_purchase (tour_id, client_id, amount, purchase_date) VALUES (?, ?, ?, ?)";
-    private final String SELECT_ORDERS = "SELECT order.id, order.paid, user.username, tour.tourname, order.amount, order.purchase_date FROM `tour_purchase` `order` JOIN `tour` ON order.tour_id = tour.id JOIN user ON user.id = order.client_id";
+    private final String SELECT_ORDERS = "SELECT order.id,  user.username, tour.tourname, order.amount, order.purchase_date FROM `tour_purchase` `order` JOIN `tour` ON order.tour_id = tour.id JOIN user ON user.id = order.client_id";
 
     private Logger logger = Logger.getRootLogger();
 
-    private OrderDAO(){}
+    private OrderDAO() {
+    }
 
     private static OrderDAO instance;
 
-    public static OrderDAO getInstance(){
-        if (instance == null){
+    public static OrderDAO getInstance() {
+        if (instance == null) {
             instance = new OrderDAO();
         }
         return instance;
     }
 
-
     /**
      * find all orders
+     *
      * @return
      * @throws DAOLogicalException
      * @throws DAOTechnicalException
@@ -48,9 +49,9 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
     @Override
     public List<Order> findAll() throws DAOLogicalException, DAOTechnicalException {
         ConnectionPool connectionPool = null;
-        try{
+        try {
             connectionPool = ConnectionPool.getInstance();
-        } catch (ConnectionPoolException e){
+        } catch (ConnectionPoolException e) {
             throw new DAOTechnicalException(e);
         }
 
@@ -59,14 +60,13 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
         LinkedList<Order> orders = new LinkedList<Order>();
 
-        if (connection != null){
+        if (connection != null) {
             try {
                 statement = connection.prepareStatement(SELECT_ORDERS);
 
-
                 ResultSet set = statement.executeQuery();
 
-                while(set.next()){
+                while (set.next()) {
 
                     Order order = createOrder(set);
 
@@ -86,24 +86,25 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
                 }
                 connectionPool.release(connection);
             }
-        } else{
+        } else {
             throw new DAOTechnicalException(NO_CONNECTION);
         }
     }
 
     /**
      * find orders for user
+     *
      * @param user
      * @return
      * @throws DAOLogicalException
      * @throws DAOTechnicalException
      */
-    public List<Order> findOrdersForUser(User user) throws DAOLogicalException, DAOTechnicalException{
-        if (user != null){
+    public List<Order> findOrdersForUser(User user) throws DAOLogicalException, DAOTechnicalException {
+        if (user != null) {
             ConnectionPool connectionPool = null;
-            try{
+            try {
                 connectionPool = ConnectionPool.getInstance();
-            } catch (ConnectionPoolException e){
+            } catch (ConnectionPoolException e) {
                 throw new DAOTechnicalException(e);
             }
 
@@ -112,14 +113,14 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
             LinkedList<Order> orders = new LinkedList<Order>();
 
-            if (connection != null){
+            if (connection != null) {
                 try {
                     statement = connection.prepareStatement(SELECT_USER_ORDERS);
                     statement.setInt(1, user.getId());
 
                     ResultSet set = statement.executeQuery();
 
-                    while(set.next()){
+                    while (set.next()) {
 
                         Order order = createOrder(set);
 
@@ -139,7 +140,7 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
                     }
                     connectionPool.release(connection);
                 }
-            } else{
+            } else {
                 throw new DAOTechnicalException(NO_CONNECTION);
             }
         } else {
@@ -150,11 +151,12 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
     /**
      * create order
+     *
      * @param set
      * @return
      * @throws SQLException
      */
-    private Order createOrder(ResultSet set) throws SQLException{
+    private Order createOrder(ResultSet set) throws SQLException {
         Order order = new Order();
         order.setId(set.getInt("id"));
         order.setAmount(set.getDouble("amount"));
@@ -174,6 +176,7 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
     /**
      * create order
+     *
      * @param entity
      * @return
      * @throws DAOLogicalException
@@ -181,17 +184,17 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
      */
     @Override
     public boolean create(Order entity) throws DAOLogicalException, DAOTechnicalException {
-        if (entity != null){
+        if (entity != null) {
             ConnectionPool connectionPool = null;
-            try{
+            try {
                 connectionPool = ConnectionPool.getInstance();
-            } catch (ConnectionPoolException e){
+            } catch (ConnectionPoolException e) {
                 throw new DAOTechnicalException(e);
             }
 
             Connection connection = connectionPool.getConnection();
             PreparedStatement statement = null;
-            if (connection != null){
+            if (connection != null) {
                 try {
                     statement = connection.prepareStatement(CREATE_ORDER);
                     statement.setInt(1, entity.getTour().getId());
@@ -215,7 +218,7 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
                     }
                     connectionPool.release(connection);
                 }
-            } else{
+            } else {
                 throw new DAOTechnicalException(NO_CONNECTION);
             }
         }
@@ -223,17 +226,17 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
         return false;
     }
 
-    public void updatePaid(Integer id, boolean paid) throws  DAOLogicalException, DAOTechnicalException{
+    public void updatePaid(Integer id, boolean paid) throws DAOLogicalException, DAOTechnicalException {
         ConnectionPool connectionPool = null;
-        try{
+        try {
             connectionPool = ConnectionPool.getInstance();
-        } catch (ConnectionPoolException e){
+        } catch (ConnectionPoolException e) {
             throw new DAOTechnicalException(e);
         }
 
         Connection connection = connectionPool.getConnection();
         PreparedStatement statement = null;
-        if (connection != null){
+        if (connection != null) {
             try {
                 statement = connection.prepareStatement(UPDATE_ORDER);
 
@@ -242,9 +245,9 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
                 int affected = statement.executeUpdate();
 
-                if (affected < 0){
+                if (affected < 0) {
                     throw new DAOLogicalException(NO_ROWS_AFFECTED);
-                } else{
+                } else {
                     return;
                 }
 
@@ -261,13 +264,14 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
                 }
                 connectionPool.release(connection);
             }
-        } else{
+        } else {
             throw new DAOTechnicalException(NO_CONNECTION);
         }
     }
 
     /**
      * update order
+     *
      * @param entity
      * @return
      * @throws DAOLogicalException
@@ -280,6 +284,7 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
     /**
      * find order by id
+     *
      * @param id
      * @return
      * @throws DAOLogicalException
@@ -302,6 +307,7 @@ public class OrderDAO extends AbstractDAO<Integer, Order>{
 
     /**
      * create entity
+     *
      * @param set
      * @return
      * @throws SQLException
