@@ -8,6 +8,7 @@ import by.bsuir.group172301.matskevich.tour.command.LogoutCommand;
 import by.bsuir.group172301.matskevich.tour.command.SignUpCommand;
 import by.bsuir.group172301.matskevich.tour.command.ViewToursCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.AddTourCommand;
+import by.bsuir.group172301.matskevich.tour.command.admin.AddToursCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.DeleteTourCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.ManagerCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.OrdersCommand;
@@ -48,10 +49,11 @@ public enum RequestHelper {
         //Admin commands
         commands.put("manager", new ManagerCommand());
         commands.put("add_tour", new AddTourCommand());
+        commands.put("add_tours", new AddToursCommand());
         commands.put("delete_tour", new DeleteTourCommand());
         commands.put("update_tour", new UpdateTourCommand());
         commands.put("orders", new OrdersCommand());
-      
+   //     commands.put("tests", new AccountCommand());
     }
 
     /**

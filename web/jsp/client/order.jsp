@@ -18,7 +18,33 @@
 
 <div class="content">
     <h1>Результаты</h1>
+            <table class="order-table">
+                <tbody>
 
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> </td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+                    <tr>
+                        <td> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/> <input class="table-input" type="text" required/></td>
+                    </tr>
+
+                </tbody>
+            </table>
 
 </div>
 

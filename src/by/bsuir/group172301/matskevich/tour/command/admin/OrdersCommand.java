@@ -35,7 +35,7 @@ public class OrdersCommand extends AdminCommand {
 //            }
 //        }
      //   request.setAttribute("orders", orders);
-
+       System.out.println("============================");
         return pathManager.getString("path.page.admin.orders");
     }
 }

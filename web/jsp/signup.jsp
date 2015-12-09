@@ -23,8 +23,8 @@
                 <input type="hidden" name="command" value="user"/>               
                 <input class="sign-up-input" id="login" type="text" name="login" pattern ='^[a-zA-Z]+$' placeholder =<fmt:message key="auth.page.login_form.login"/> required/>
                 <input class="sign-up-input" id="password" type="password" pattern = '^[a-zA-Z0-9]+$'placeholder= <fmt:message key="auth.page.login_form.password"/> name="password" required/>
-                <input class="sign-up-input" id="firstName" type="text"pattern ='^[а-яА-ЯёЁa-zA-Z]+$' placeholder=<fmt:message key="signup.page.login_form.firstname"/> name="firstName"required/>
-                <input class="sign-up-input" id="lastName" type="text" pattern ='^[а-яА-ЯёЁa-zA-Z]+$' placeholder=<fmt:message key="signup.page.login_form.lastname"/> name="lastName"required/>
+                <input class="sign-up-input" id="firstName" type="text"pattern ='^[а-яА-ЯёЁa-zA-Z]+$' placeholder=<fmt:message key="signup.page.login_form.firstname"/> name="firstName" required/>
+                <input class="sign-up-input" id="lastName" type="text" pattern ='^[а-яА-ЯёЁa-zA-Z]+$' placeholder=<fmt:message key="signup.page.login_form.lastname"/> name="lastName" required/>
                 <input class="sign-up-input" id="dateOfBirth" type="date" placeholder=<fmt:message key="signup.page.login_form.dateofbirth"/> name="dateOfBirth" min="1890-01-01"/>
                 <input class="sign-up-input" id="email" type="email" placeholder=<fmt:message key="signup.page.login_form.email"/> name="email"required/>
                 <input class="sign-up-input" id="fullAdress" type="text" placeholder=<fmt:message key="signup.page.login_form.fulladress"/> name="fullAdress"required />

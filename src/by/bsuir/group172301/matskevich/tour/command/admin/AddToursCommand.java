@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 /**
  * Add tour command
  */
-public class AddTourCommand extends AdminCommand {
+public class AddToursCommand extends AdminCommand {
 
     @Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

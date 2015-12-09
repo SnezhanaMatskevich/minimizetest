@@ -1,16 +1,10 @@
 <form  class="sign-up" method="post">
+    <input type="hidden" name="command" value="tests"/>    
     <label for="tourname"><fmt:message key="tour_form.tourname"/></label>
-    <input class="sign-up-input" id="tourname" name="tourname" type="text" value="${tour.tourname}">
-
-
+    <input class="sign-up-input" id="tourname" name="tourname" type="number">
     <label for="discount"><fmt:message key="tour_form.discount"/></label>
-    <input class="sign-up-input" id="discount" type="text" name="regular_discount" value="${tour.regularDiscount}"/>
-
-       <div class="actions">
-                   <a href="app?c=account&lang=${locale}"><fmt:message key="tour_form.back"/></a>
-           <center> <a class="btn" href="app?c=account&lang=${locale}"><fmt:message key="form_submit"/></a> </center>
-      </div>
-
-
+    <input class="sign-up-input" id="discount" type="number" name="regular_discount"/>
+    <a href="app?c=account&lang=${locale}"><fmt:message key="tour_form.back"/></a>
+    <input class="sign-up-button" type="submit" value="<fmt:message key="form_submit"/>"/>
 </form>
 

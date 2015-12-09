@@ -53,7 +53,7 @@
     </c:forEach>
 
     <div class="actions">
-        <a class="btn" href="app?c=add_tour&lang=${locale}"><fmt:message key="tour_table.add"/></a>
+        <a class="btn" href="app?c=add_tours&lang=${locale}"><fmt:message key="tour_table.add"/></a>
     </div>
 
 
