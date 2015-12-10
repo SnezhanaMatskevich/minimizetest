@@ -82,7 +82,7 @@
                 <p class="title2">Введите данные матрицы.</p>
             </div>
 
-            <form class="form" name="username" action="${pageContext.request.contextPath}/app?c=account&lang=${locale}" method="post">
+            <form class="form" name="username" action="${pageContext.request.contextPath}/app?c=add_matrix&lang=${locale}" method="post">
                 <!--Matrix id:<input id="cell" size="5" type="number" min="1" value="1" required="" step="1" name="idA">-->
                 <select class="sign-up-select" id="rowsA" name="rowsA" onchange="inputMatrixA()">
                     <option value="0"></option>
@@ -113,8 +113,8 @@
                 <br>
                 <div id="matrixA"></div>
                 <br>
-                <input class="sign-up-button-m" type="submit" id="Ok" value="Рассчитать" disabled="disabled"/>
-                <input  type="hidden" name="action" value="addMatrix">
+                <input class="sign-up-button-m" type="submit" id="Ok" value="Готово" disabled="disabled"/>
+                <input  type="hidden" name="command" value="add_matrix">
             </form>
 
 

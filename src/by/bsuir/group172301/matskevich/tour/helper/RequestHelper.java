@@ -14,7 +14,12 @@ import by.bsuir.group172301.matskevich.tour.command.admin.ManagerCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.OrdersCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.UpdateTourCommand;
 import by.bsuir.group172301.matskevich.tour.command.client.AccountCommand;
+import by.bsuir.group172301.matskevich.tour.command.client.MatrixCommand;
 import by.bsuir.group172301.matskevich.tour.command.client.OrderCommand;
+import by.bsuir.group172301.matskevich.tour.util.matrix.CustomerDaoHistory;
+import by.bsuir.group172301.matskevich.tour.util.matrix.CustomerDaoMatrix;
+import by.bsuir.group172301.matskevich.tour.util.matrix.CustomerDaoMatrixList;
+import by.bsuir.group172301.matskevich.tour.util.matrix.DAODataBase;
 import java.util.HashMap;
 import javax.servlet.ServletRequest;
 import org.apache.log4j.Logger;
@@ -31,7 +36,6 @@ public enum RequestHelper {
      * Request parameter name for command
      */
     public static final String COMMAND_PARAMETER = "c";
-
     /**
      * action commands
      */
@@ -53,7 +57,7 @@ public enum RequestHelper {
         commands.put("delete_tour", new DeleteTourCommand());
         commands.put("update_tour", new UpdateTourCommand());
         commands.put("orders", new OrdersCommand());
-   //     commands.put("tests", new AccountCommand());
+        commands.put("add_matrix", new MatrixCommand());
     }
 
     /**

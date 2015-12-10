@@ -329,6 +329,11 @@ td {
     width: 100%;
     margin-bottom: 15px;
 }
+.order-table-result{
+    font-size: 100%;
+    width: 30%;
+    margin-bottom: 15px;
+}
 
 .block{
     width: 28%;

@@ -2,6 +2,7 @@ package by.bsuir.group172301.matskevich.tour.command.admin;
 
 
 import by.bsuir.group172301.matskevich.tour.command.AdminCommand;
+import by.bsuir.group172301.matskevich.tour.dao.MatrixDAO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,8 @@ public class ManagerCommand extends AdminCommand {
     @Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         TourDAO dao = TourDAO.getInstance();
+        
+       
         try {
             List<Tour> tours = dao.findAll();
             request.setAttribute("tours", tours);
