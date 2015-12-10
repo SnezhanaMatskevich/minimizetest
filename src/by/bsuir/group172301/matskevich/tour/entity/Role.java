@@ -29,7 +29,7 @@ public class Role extends Entity{
      * @param rolename
      */
 	public void setRolename(String rolename) {
-		this.rolename = rolename;
+		this.rolename = ROLE_ADMIN;
 	}
 
 	@Override

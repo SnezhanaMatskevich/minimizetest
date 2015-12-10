@@ -1,5 +1,6 @@
 package by.bsuir.group172301.matskevich.tour.helper;
 
+import by.bsuir.group172301.matskevich.tour.command.CountCommand;
 import by.bsuir.group172301.matskevich.tour.command.ActionCommand;
 import by.bsuir.group172301.matskevich.tour.command.EmptyCommand;
 import by.bsuir.group172301.matskevich.tour.command.LoginCommand;
@@ -58,6 +59,9 @@ public enum RequestHelper {
         commands.put("update_tour", new UpdateTourCommand());
         commands.put("orders", new OrdersCommand());
         commands.put("add_matrix", new MatrixCommand());
+        commands.put("count", new CountCommand());
+        
+        
     }
 
     /**

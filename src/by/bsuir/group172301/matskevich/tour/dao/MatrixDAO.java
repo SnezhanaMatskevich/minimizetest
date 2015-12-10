@@ -11,6 +11,7 @@ import by.bsuir.group172301.matskevich.tour.util.matrix.MatrixIndexOutOfBoundsEx
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class MatrixDAO {
 
     private static final String updateMatrixString = "UPDATE matrix SET value=? WHERE id=? AND row_id=? AND col_id=?";
 
-    private static final String serializeResultString = "INSERT INTO matrix_history (data_time, matrix_first, matrix_second, matrix_result) VALUES (?,?,?,?)";
+    private static final String serializeResultString = "INSERT INTO matrix_history (data_time, matrix_first) VALUES (?,?)";
 
     private static final String selectColsString = "SELECT COUNT(*) FROM matrix WHERE id = ? AND row_id = 1;";
 
@@ -139,5 +140,8 @@ public class MatrixDAO {
         return false;
 
     }
+
+   
+   
 
 }

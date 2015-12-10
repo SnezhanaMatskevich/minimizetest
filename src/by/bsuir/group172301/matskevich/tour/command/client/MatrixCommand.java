@@ -101,21 +101,96 @@ public class MatrixCommand extends ActionCommand {
         }
 
         matrixA.print();
-
+   
+      
+         
+      double [][] matrixB= reduce((MatrixDouble) matrixA);
+          Matrix matrixC = new MatrixDouble(matrixB);
+         matrixC.print();
         try {
-            request.setAttribute("result", matrixA);
+            request.setAttribute("result", matrixC);
             dao.create(matrixA);
+          
        } catch (NumberFormatException ex) {
            request.setAttribute("message", "Input error.");
          //  LOGER.error("insert matrix error", ex);
-        } catch (DAOLogicalException ex) {
-            java.util.logging.Logger.getLogger(MatrixCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DAOTechnicalException ex) {
-            java.util.logging.Logger.getLogger(MatrixCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (DAOLogicalException | DAOTechnicalException | SQLException ex) {
             java.util.logging.Logger.getLogger(MatrixCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
          return pathManager.getString("path.page.search");
     }
     
+    
+  
+
+  
+
+    public static double[][] reduce(MatrixDouble matrixA) {
+        double[][] rowsCleaned = cleanZeroRows(matrixA.mas);
+
+        double[][] transposed = transpose(rowsCleaned);
+     
+        double[][] colsCleaned = cleanZeroRows(transposed);
+
+        double[][] transposedBack = transpose(colsCleaned);
+   
+        return transposedBack;
+    
+    }
+
+    private static double[][] cleanZeroRows(double[][] matrix) {
+        //first find those that need to delete
+        boolean[] deleteThese = new boolean[matrix.length];
+        int count = 0;
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        for(int i=0;i<rows;i++){
+            boolean allZeros = true;
+            for(int j=0;j<cols;j++){
+                if (matrix[i][j] != 0){
+                    allZeros = false;
+                    break;
+                }
+            }           
+            deleteThese[i] = allZeros;
+            if (allZeros){
+                count++;
+            }
+        }
+
+        //
+        if (count == 0){
+            return matrix;
+        }else if (count == matrix.length){
+            return new double[0][0];
+        }else{
+            double[][] newMatrix = new double[rows - count][cols];
+            int idx = -1;
+            for(int i=0;i<rows;i++){
+                if (!deleteThese[i]){
+                    idx++;
+                    newMatrix[idx] = matrix[i];
+                }
+            }
+            return newMatrix;
+        }
+    }
+
+
+
+    public static double[][] transpose(double[][] m) {
+        int r = m.length;
+        int c = m[0].length;
+        double[][] t = new double[c][r];
+        for (int i = 0; i < r; ++i) {
+            for (int j = 0; j < c; ++j) {
+                t[j][i] = m[i][j];
+            }
+        }
+        return t;
+    }
+
+   
+
 }

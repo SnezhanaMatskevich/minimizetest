@@ -29,11 +29,7 @@
                 ${error}
             </div>
     </center> 
-                <form class="form" name="username" action="${pageContext.request.contextPath}/app?c=count&lang=${locale}&matr=${result}" method="post">
-
-                     <input class="sign-up-button-m" type="submit" id="Ok" value="Готово"/>
-                <input  type="hidden" name="command" value="count">
-            </form>
+   
 
             
             
