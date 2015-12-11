@@ -36,9 +36,8 @@ public class CountCommand extends ActionCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         
-       
-   
-         return pathManager.getString("path.page.count");
+
+         return pathManager.getString("path.page.client.account");
     }
     
      

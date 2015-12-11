@@ -6,8 +6,10 @@ import by.bsuir.group172301.matskevich.tour.exception.CommandException;
 import by.bsuir.group172301.matskevich.tour.exception.DAOTechnicalException;
 import by.bsuir.group172301.matskevich.tour.exception.DAOLogicalException;
 import by.bsuir.group172301.matskevich.tour.dao.OrderDAO;
+import by.bsuir.group172301.matskevich.tour.dao.ReporDAO;
 import by.bsuir.group172301.matskevich.tour.dao.TourDAO;
 import by.bsuir.group172301.matskevich.tour.entity.Order;
+import by.bsuir.group172301.matskevich.tour.entity.Report;
 import by.bsuir.group172301.matskevich.tour.entity.Role;
 import by.bsuir.group172301.matskevich.tour.entity.Tour;
 import by.bsuir.group172301.matskevich.tour.entity.User;
@@ -77,8 +79,8 @@ public class LoginCommand extends ActionCommand {
                 notification = NotificationCreator.createFromProperty("info.auth.success", locale);
 
                 if (user.getRole().getRolename().equals(Role.ROLE_ADMIN)) {
-                    List<Tour> tours = TourDAO.getInstance().findAll();
-                    request.setAttribute("tours", tours);
+                    List<Report> tours = ReporDAO.getInstance().findAll();
+                    request.setAttribute("reports", tours);
                     return pathManager.getString("path.page.admin.manager");
                 } else if (user.getRole().getRolename().equals(Role.ROLE_CLIENT)) {
                     List<Order> orders = OrderDAO.getInstance().findOrdersForUser(user);

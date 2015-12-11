@@ -34,21 +34,19 @@
         <a class="btn" href="app?c=add_tour&lang=${locale}"><fmt:message key="tour_table.add"/></a>
     </div>
 
-    <c:forEach items="${tours}" var="tour">
+    <c:forEach items="${reports}" var="reports">
         <div class="tour">
-            <h3>${tour.tourname}
-                <c:if test="${tour.hot}">
-                    <span class="hot"><fmt:message key="tour_table.hot"/></span>
-                </c:if>
+            <h3>${reports.report}
+           
             </h3>
             <div class="inner">
             
   
-                <p><b><fmt:message key="tour_table.details"/>:</b> ${tour.details}</p>
-                <p><b><fmt:message key="tour_table.percent"/>:</b> ${tour.regularDiscount}%</p>
+                <p><b><fmt:message key="tour_table.details"/>:</b> ${reports.col1}   --->  ${reports.col2}</p>
+                <p><b><fmt:message key="tour_table.percent"/>:</b> ${reports.perc}%</p>
             </div>
-            <a class="btn btn-blue" href="app?c=update_tour&id=${tour.id}&lang=${locale}"><fmt:message key="tour_table.edit"/></a>
-            <a class="btn btn-red" href="app?c=delete_tour&id=${tour.id}&lang=${locale}"><fmt:message key="tour_table.delete"/></a>
+            <a class="btn btn-blue" href="app?c=update_tour&id=${reports.id}&lang=${locale}"><fmt:message key="tour_table.edit"/></a>
+            <a class="btn btn-red" href="app?c=delete_tour&id=${reports.id}&lang=${locale}"><fmt:message key="tour_table.delete"/></a>
         </div>
     </c:forEach>
 

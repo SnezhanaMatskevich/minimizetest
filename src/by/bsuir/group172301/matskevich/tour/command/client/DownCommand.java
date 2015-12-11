@@ -46,7 +46,7 @@ public class DownCommand extends AdminCommand{
                     String name = report.getReport();
                     PDFCreator obj = new PDFCreator();
                   //  obj.generateBarChart(col1, col2);
-              obj.writeChartToPDF(obj.generateBarChart(col1, col2), 350, 400, "C://Reports//report"+param+".pdf");
+              obj.writeChartToPDF(obj.generateBarChart(col1, col2), 350, 400, "C://Reports//report"+param+".pdf", col1, col2, perc);
 
             } catch (NumberFormatException e){
                 notification = NotificationCreator.createFromProperty("error.invalid_parameter", Notification.Type.ERROR, locale);
@@ -62,6 +62,6 @@ public class DownCommand extends AdminCommand{
         }
 
       //  return pathManager.getString("path.page.admin.manager");
-        return null;
+       return pathManager.getString("path.page.download");
     }
 }

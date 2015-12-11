@@ -3,10 +3,12 @@ package by.bsuir.group172301.matskevich.tour.command.admin;
 
 import by.bsuir.group172301.matskevich.tour.command.AdminCommand;
 import by.bsuir.group172301.matskevich.tour.dao.MatrixDAO;
+import by.bsuir.group172301.matskevich.tour.dao.ReporDAO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import by.bsuir.group172301.matskevich.tour.dao.TourDAO;
+import by.bsuir.group172301.matskevich.tour.entity.Report;
 import by.bsuir.group172301.matskevich.tour.entity.Tour;
 import by.bsuir.group172301.matskevich.tour.entity.User;
 import by.bsuir.group172301.matskevich.tour.exception.CommandException;
@@ -33,12 +35,12 @@ public class ManagerCommand extends AdminCommand {
      */
     @Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        TourDAO dao = TourDAO.getInstance();
+        ReporDAO dao = ReporDAO.getInstance();
         
        
         try {
-            List<Tour> tours = dao.findAll();
-            request.setAttribute("tours", tours);
+            List<Report> tours = dao.findAll();
+            request.setAttribute("reports", tours);
         } catch (DAOLogicalException e) {
             throw new CommandException(e);
         } catch (DAOTechnicalException e) {

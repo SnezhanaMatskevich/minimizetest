@@ -30,7 +30,7 @@ public class ReporDAO extends AbstractDAO<Integer, Report> {
     private final String FIND_BY_ID = "SELECT id, col1, col2, perc, report FROM percent WHERE id = ?";
     private final String CREATE_TOUR = "INSERT INTO tour(tourname, details, hot, price, regular_discount, type) VALUES(?, ?, ?, ?, ?, ?)";
     private final String UPDATE_BY_ID = "UPDATE tour SET tourname=?, details=?, hot=?, price=?, regular_discount=?, type=? WHERE id=?";
-    private final String DELETE_TOUR_BY_ID = "DELETE FROM tour WHERE id = ?";
+    private final String DELETE_TOUR_BY_ID = "DELETE FROM percent WHERE id = ?";
     private final String FIND_BY_NAME = "SELECT id, tourname, details, hot, price, regular_discount, type FROM tour WHERE tourname = ?";
 
     private static final Logger logger = Logger.getRootLogger();
@@ -135,16 +135,51 @@ public class ReporDAO extends AbstractDAO<Integer, Report> {
         }
     }
 
-    @Override
+ @Override
     public boolean delete(Integer id) throws DAOLogicalException, DAOTechnicalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (null != id) {
+
+            ConnectionPool connectionPool = null;
+            try {
+                connectionPool = ConnectionPool.getInstance();
+            } catch (ConnectionPoolException e) {
+                throw new DAOTechnicalException(e);
+            }
+
+            Connection connection = connectionPool.getConnection();
+            PreparedStatement statement = null;
+            if (connection != null) {
+                try {
+                    statement = connection.prepareStatement(DELETE_TOUR_BY_ID);
+                    statement.setInt(1, id);
+                    int affected = statement.executeUpdate();
+                    if (affected > 0) {
+                        return true;
+                    } else {
+                        throw new DAOLogicalException("No such record in database");
+                    }
+
+                } catch (SQLException e) {
+                    throw new DAOTechnicalException(e);
+                } finally {
+                    if (null != statement) {
+                        try {
+                            statement.close();
+                        } catch (SQLException e) {
+                            logger.error(e.getMessage());
+                        }
+                    }
+                    connectionPool.release(connection);
+                }
+            } else {
+                throw new DAOTechnicalException(NO_CONNECTION);
+            }
+        } else {
+            throw new DAOLogicalException(INVALID_DATA);
+        }
     }
 
-    @Override
-    public boolean delete(Report entity) throws DAOLogicalException, DAOTechnicalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public boolean create(Report entity) throws DAOLogicalException, DAOTechnicalException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -171,6 +206,11 @@ public class ReporDAO extends AbstractDAO<Integer, Report> {
  
 
         return tour;
+    }
+
+    @Override
+    public boolean delete(Report entity) throws DAOLogicalException, DAOTechnicalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

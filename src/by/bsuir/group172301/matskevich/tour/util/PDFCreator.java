@@ -25,53 +25,57 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author Sniazhana_Matskevich
  */
 public class PDFCreator {
-    
+
     public static JFreeChart generateBarChart(int init, int posle) {
-       DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        
+        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+
         dataSet.setValue(init, "Тесты", "Before");
         dataSet.setValue(posle, "Тесты", "After");
 
- 
         JFreeChart chart = ChartFactory.createBarChart(
                 "Tendention", "Tests", "Quantity",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
- 
+
         return chart;
     }
-   
-    public static void writeChartToPDF(JFreeChart chart, int width, int height, String fileName) {
-    PdfWriter writer = null;
- 
-    Document document = new Document();
- 
-    try {
-        writer = PdfWriter.getInstance(document, new FileOutputStream(
-                fileName));
-        document.open();
-    Paragraph paragraph = new Paragraph();
+
+    public static void writeChartToPDF(JFreeChart chart, int width, int height, String fileName, int col1, int col2, double perc) {
+        PdfWriter writer = null;
+
+        Document document = new Document();
+
+        try {
+            writer = PdfWriter.getInstance(document, new FileOutputStream(
+                    fileName));
+            document.open();
+            Paragraph paragraph = new Paragraph();
     // We add one empty line
-  
-     paragraph = new Paragraph("Results:");
-      paragraph.setAlignment(Element.ALIGN_CENTER);
-      document.add(paragraph);
-        PdfContentByte contentByte = writer.getDirectContent();
-        PdfTemplate template = contentByte.createTemplate(width, height);
-        Graphics2D graphics2d = template.createGraphics(width, height,
-                new DefaultFontMapper());
-        Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width,
-                height);
- 
-        chart.draw(graphics2d, rectangle2d);
-         
-        graphics2d.dispose();
-        contentByte.addTemplate(template, 150, 250);
- 
-    } catch (Exception e) {
-        e.printStackTrace();
+
+            paragraph = new Paragraph("Results:");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            paragraph = new Paragraph("Test before: " + col1);
+            document.add(paragraph);
+            paragraph = new Paragraph("Test after: " + col2);
+            document.add(paragraph);
+            paragraph = new Paragraph("Percentage: " + perc);
+            document.add(paragraph);
+            PdfContentByte contentByte = writer.getDirectContent();
+            PdfTemplate template = contentByte.createTemplate(width, height);
+            Graphics2D graphics2d = template.createGraphics(width, height,
+                    new DefaultFontMapper());
+            Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width,
+                    height);
+
+            chart.draw(graphics2d, rectangle2d);
+
+            graphics2d.dispose();
+            contentByte.addTemplate(template, 150, 250);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        document.close();
     }
-    document.close();
-}
-    
-    
+
 }

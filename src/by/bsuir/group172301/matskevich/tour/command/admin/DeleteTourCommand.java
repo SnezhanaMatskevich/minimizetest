@@ -1,7 +1,9 @@
 package by.bsuir.group172301.matskevich.tour.command.admin;
 
 import by.bsuir.group172301.matskevich.tour.command.AdminCommand;
+import by.bsuir.group172301.matskevich.tour.dao.ReporDAO;
 import by.bsuir.group172301.matskevich.tour.dao.TourDAO;
+import by.bsuir.group172301.matskevich.tour.entity.Report;
 import by.bsuir.group172301.matskevich.tour.entity.Tour;
 import by.bsuir.group172301.matskevich.tour.exception.CommandException;
 import by.bsuir.group172301.matskevich.tour.exception.DAOLogicalException;
@@ -30,10 +32,10 @@ public class DeleteTourCommand extends AdminCommand{
             Locale locale = LocaleManager.INSTANCE.resolveLocale(request);
             try{
                 int id = Integer.parseInt(param);
-                TourDAO dao = TourDAO.getInstance();
+                ReporDAO dao = ReporDAO.getInstance();
                 if (dao.delete(id)){
-                    List<Tour> tours = dao.findAll();
-                    request.setAttribute("tours", tours);
+                    List<Report> tours = dao.findAll();
+                    request.setAttribute("reports", tours);
                     notification = NotificationCreator.createFromProperty("info.db.delete_success", locale);
                 }
             } catch (NumberFormatException e){
