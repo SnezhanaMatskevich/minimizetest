@@ -39,7 +39,7 @@ public class TagPrintMatrix extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         JspWriter jspOut = getJspContext().getOut();
         if (matrix != null) {
-            jspOut.println("<div class=\"center_coment\"><p>№ in data base: " + matrix.getId() + "</p></div> <br>");
+         
             jspOut.println("<table class=\"order-table-result\" id=\"resultTr\" border=\"1\" cellspacing=\"0\">");
 
             for (int i = 0; i < matrix.getRowsCount(); i++) {

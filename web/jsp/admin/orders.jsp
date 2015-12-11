@@ -34,8 +34,9 @@
         <h1><fmt:message key="orders.title"/></h1>
 
         <center> <lable for="searchField"><fmt:message key="header.search.form"/></lable> <input class="sign-up-input" type="text" id="dgSearchField" style="width:400" ></center>
-
-
+   
+        
+        
         <br><br>
         <table id="listToBeFiltered" style="width: 100%">
             <thead>
@@ -43,30 +44,29 @@
                     <th>Номер</th>
                     <th>Имя</th>             
                     <th>Использовано</th>
-                    <th></th>
+                    <th>Улучшения</th>
 
                 </tr>
             </thead>
 
             <tbody>
-                <c:forEach items="3" >
+                <c:forEach items="${reports}" var="reports">
                     <tr>
-                        <td>1</td>
-                        <td>Отчёт1</td>
+                        <td>${reports.id}</td>
+                        <td>${reports.report}</td>
                         <td><input  class="paid" type="checkbox" <c:if test="true">checked="true"</c:if>/> </td>
-                            <td>   <input  class="table-button" name="submit" type="submit" value="Скачать"/> </td>
-                        </tr>
+                        <td>${reports.perc}%</td>
+                <form class="form" name="username" action="${pageContext.request.contextPath}/app?c=download&id=${reports.id}&lang=${locale}" method="post">
+                    <input type="hidden" name="command" value="download">
+                    <td>   <input  class="table-button" name="submit" type="submit" value="Скачать"/> </td>
+                </form>
 
-                        <tr>
-                            <td>2</td>
-                            <td>Отчёт2</td>
-                            <td><input  class="paid" type="checkbox" <c:if test="false">checked="true"</c:if>/> </td>
-                            <td>   <input  class="table-button" name="submit" type="submit" value="Скачать"/> </td>
-                        </tr>
+                </tr>
 
+                               
 
                 </c:forEach>
-            </tbody>
+                </tbody>
         </table>
         <script type="text/javascript">
             var filter = new DG.Filter({

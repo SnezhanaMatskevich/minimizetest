@@ -27,6 +27,7 @@ public class MatrixDAO {
     private static final String updateMatrixString = "UPDATE matrix SET value=? WHERE id=? AND row_id=? AND col_id=?";
 
     private static final String serializeResultString = "INSERT INTO matrix_history (data_time, matrix_first) VALUES (?,?)";
+    private static final String insertpercentage  = "INSERT INTO percent (col1, col2, perc, report) VALUES (?,?,?,?)";
 
     private static final String selectColsString = "SELECT COUNT(*) FROM matrix WHERE id = ? AND row_id = 1;";
 
@@ -142,6 +143,58 @@ public class MatrixDAO {
     }
 
    
+    public boolean percentage(int a, int b, double c) throws DAOLogicalException, DAOTechnicalException, SQLException {
+
+
+        ResultSet result = null;
+ 
+            ConnectionPool connectionPool = null;
+            try {
+                connectionPool = ConnectionPool.getInstance();
+            } catch (ConnectionPoolException e) {
+                throw new DAOTechnicalException(e);
+            }
+int randomNum = 1 + (int)(Math.random()*999); 
+            Connection connection = connectionPool.getConnection();
+            PreparedStatement statement = null;
+            statement = connection.prepareStatement(insertpercentage);
+            if (connection != null) {
+                try {
+                    statement.setInt(1, a);
+                    statement.setInt(2, b);
+                    statement.setDouble(3, c);
+                    statement.setString(4, "Отчёт" + randomNum);
+                    statement.addBatch();
+
+                    statement.executeBatch();
+                 
+                    result = statement.executeQuery();
+                    //System.out.println("");
+
+                    
+
+                    statement.close();
+
+                } catch (SQLException e) {
+                    throw new DAOTechnicalException(e.getMessage());
+
+                } finally {
+                    if (null != statement) {
+                        try {
+                            statement.close();
+                        } catch (SQLException e) {
+                            logger.error(e.getMessage());
+                        }
+                    }
+                    connectionPool.release(connection);
+                }
+            } else {
+                //   throw new DAOTechnicalException(NO_CONNECTION);
+            }
+        return false;
    
+
+    
+    }
 
 }

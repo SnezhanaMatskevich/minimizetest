@@ -15,6 +15,7 @@ import by.bsuir.group172301.matskevich.tour.command.admin.ManagerCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.OrdersCommand;
 import by.bsuir.group172301.matskevich.tour.command.admin.UpdateTourCommand;
 import by.bsuir.group172301.matskevich.tour.command.client.AccountCommand;
+import by.bsuir.group172301.matskevich.tour.command.client.DownCommand;
 import by.bsuir.group172301.matskevich.tour.command.client.MatrixCommand;
 import by.bsuir.group172301.matskevich.tour.command.client.OrderCommand;
 import by.bsuir.group172301.matskevich.tour.util.matrix.CustomerDaoHistory;
@@ -60,6 +61,7 @@ public enum RequestHelper {
         commands.put("orders", new OrdersCommand());
         commands.put("add_matrix", new MatrixCommand());
         commands.put("count", new CountCommand());
+         commands.put("download", new DownCommand());
         
         
     }
